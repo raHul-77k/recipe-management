@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .user-details {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+
+        .user-details p {
+            margin: 10px 0;
+        }
+
+        .user-details strong {
+            color: #555;
+        }
+
+        .recipes-container, .favorites-container {
+            margin-top: 20px;
+        }
+
+        .collections-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .collection-card {
+            flex: 1 1 calc(25% - 10px);
+            background: #007bff;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .collection-card:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .collection-card {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .collection-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-container">
+        <h1>User Profile</h1>
+        <div class="user-details">
+            <p><strong>Username:</strong> <span id="username"></span></p>
+            <p><strong>Email ID:</strong> <span id="emailId"></span></p>
+        </div>
+        <h2>Your Recipes</h2>
+        <div id="recipesContainer" class="recipes-container"></div>
+        <h2>Collections</h2>
+        <div id="collectionsContainer" class="collections-container">
+            <div class="collection-card" onclick="loadFavorites('beverages')">Beverages</div>
+            <div class="collection-card" onclick="loadFavorites('desserts')">Desserts</div>
+            <div class="collection-card" onclick="loadFavorites('mainCourses')">Main Courses</div>
+            <div class="collection-card" onclick="loadFavorites('snacks')">Snacks</div>
+        </div>
+        <h2>Favorites</h2>
+        <div id="favoritesContainer" class="favorites-container"></div>
+    </div>
+    <script src="user.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

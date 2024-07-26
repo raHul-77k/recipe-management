@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <title>Recipe Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            background: #007bff;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-bar a:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #recipeDetailContainer {
+            margin: 20px 0;
+        }
+
+        #saveToFavorites {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #5cb85c;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #saveToFavorites:hover {
+            background: #4cae4c;
+        }
+
+        #collectionSelect,
+        #confirmSave {
+            display: none;
+        }
+
+        #collectionSelect {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #confirmSave {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #confirmSave:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <a href="./index.html">Home</a>
+        <a href="./recipesForm.html">Upload Recipes</a>
+        <a href="./user.html">Profile</a>
+    </div>
+
+    <div class="container">
+        <h1>Recipe Details</h1>
+
+        <div id="recipeDetailContainer"></div>
+
+        <button id="saveToFavorites">Save to Favorites</button>
+        <select id="collectionSelect">
+            <option value="beverages">Beverages</option>
+            <option value="desserts">Desserts</option>
+            <option value="mainCourses">Main Courses</option>
+            <option value="snacks">Snacks</option>
+        </select>
+        <button id="confirmSave">Save</button>
+    </div>
+
+    <script src="./recipeDetail.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

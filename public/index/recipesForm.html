@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <title>Upload Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        input[type="time"],
+        select,
+        textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Upload Your Recipes</h1>
+    </div>
+    <div class="container">
+        <form id="recipesForm" onsubmit="uploadRecipes(event)">
+            <label for="recipesName">Recipe Name:</label>
+            <input type="text" name="recipesName" id="recipesName" required>
+
+            <label for="cuisine">Cuisine:</label>
+            <input type="text" name="cuisine" id="cuisine" required>
+
+            <label for="veg">Vegetarian:</label>
+            <input type="radio" name="veg" id="veg" value="true">
+            <label for="veg">Yes</label>
+            <input type="radio" name="veg" id="nonVeg" value="false">
+            <label for="nonVeg">No</label>
+
+            <label for="recipesType">Recipe Type:</label>
+            <select name="recipesType" id="recipesType" required>
+                <option value="starter">Starter</option>
+                <option value="mainCourse">Main Course</option>
+                <option value="dessert">Dessert</option>
+                <option value="beverage">Beverage</option>
+            </select>
+
+            <label for="img">Image:</label>
+            <input type="file" name="img" id="img" accept="image/*" required>
+
+            <label for="ingredients">Ingredients:</label>
+            <textarea name="ingredients" id="ingredients" rows="4" required></textarea>
+
+            <label for="method">Method:</label>
+            <textarea name="method" id="method" rows="4" required></textarea>
+
+            <label for="cookingTime">Cooking Time:</label>
+            <input type="time" name="cookingTime" id="cookingTime" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="./recipesForm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
