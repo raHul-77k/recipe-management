@@ -38,34 +38,28 @@ function generateToken(id) {
 }
 
 exports.login = async (req, res) => {
+    const { emailId, password } = req.body;
+
     try {
-        const { emailId, password } = req.body;
-
-        if (!emailId || !password) {
-            return res.status(400).json({ message: 'Email ID and password must not be empty' });
+        const user = await User.findOne({ where: { emailId } });
+        if (!user) {
+            return res.status(401).json({ message: 'Authentication failed. User not found.' });
         }
 
-        const userLogin = await User.findOne({ where: { emailId: emailId } });
-        if (!userLogin) {
-            return res.status(404).json({ message: 'User not found' });
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Authentication failed. Wrong password.' });
         }
 
-        bcrypt.compare(password, userLogin.password, (err, isMatch) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({ message: 'Server Error' });
-            }
+        const token = jwt.sign(
+            { userId: user.id, email: user.emailId },
+            'your_secret_key',
+            { expiresIn: '1h' }
+        );
 
-            if (!isMatch) {
-                return res.status(401).json({ message: 'Email ID and password do not match' });
-            }
-
-            const token = generateToken(userLogin.id);
-            return res.status(200).json({ message: 'Login successful', token });
-        });
-
+        return res.status(200).json({ token, message: 'Logged in successfully' });
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: 'Server Error' });
+        console.error(err);
+        res.status(500).json({ message: 'Login failed', error: err.message });
     }
 };

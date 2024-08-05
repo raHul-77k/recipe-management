@@ -3,6 +3,11 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
+const app = express();
+
 // Importing DB
 const sequelize = require('./util/database');
 const User = require('./models/user');
@@ -17,7 +22,7 @@ const recipeRoute = require('./routes/recipesRoutes');
 const ratingRoute = require('./routes/ratingRoutes');
 const adminRoute = require('./routes/adminRoutes');
 
-const app = express();
+
 
 app.use(cors({
     origin: '*'
@@ -32,9 +37,6 @@ app.use('/home', recipeRoute);
 app.use('/user', userRoute);
 app.use('/account', accountRoute);
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/login/login.html'));
-});
 
 
 // DB relations
